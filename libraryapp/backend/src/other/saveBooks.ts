@@ -19,4 +19,4 @@ const saveBooks = [
     }
 ]
 
-module.exports = saveBooks
+export default saveBooks

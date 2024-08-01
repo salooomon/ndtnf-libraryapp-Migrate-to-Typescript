@@ -1,9 +1,9 @@
-import container from "../container/container"
-import saveBook from "../other/saveBooks"
-import BookService from "../services/BookService";
 import {Request, Response} from "express";
+import container from "../container/container";
+import saveBook from "../other/saveBooks";
+import BookService from "../services/BookService";
 
-const repo = container.get(BookService)
+const repo = container.get(BookService);
 
 // Добавление книг
 export const addBooks = async () => {
@@ -71,7 +71,7 @@ export const createBook = (req: Request, res: Response) => {
 };
 
 // Редактирование книги по id
-module.exports.editeBook = async (req: Request, res: Response) => {
+export const editeBook = async (req: Request, res: Response) => {
     const { id } = req.params;
     const {
         title, description, authors, favorite,
@@ -99,7 +99,7 @@ module.exports.editeBook = async (req: Request, res: Response) => {
 };
 
 // Удаление книги по id
-module.exports.deleteBook = async (req: Request, res: Response) => {
+export const deleteBook = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         await repo.deleteBook(id);

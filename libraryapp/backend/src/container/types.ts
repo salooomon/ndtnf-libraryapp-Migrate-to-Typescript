@@ -1,6 +1,5 @@
-
 const TYPES = {
-    Book: Symbol.for('Book')
-}
+    Book: Symbol.for('Book'),
+};
 
-export {TYPES}
+export { TYPES };

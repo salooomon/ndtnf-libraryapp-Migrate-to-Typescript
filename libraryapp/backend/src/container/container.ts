@@ -1,7 +1,7 @@
 import {Container} from "inversify";
-import {BooksRepository} from "../repository/BooksRepository";
+import BookService from "../services/BookService";
 
 const container = new Container();
-container.bind(BooksRepository).toSelf();
+container.bind(BookService).toSelf();
 
 export default container;

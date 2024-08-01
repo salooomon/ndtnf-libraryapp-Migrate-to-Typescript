@@ -1,4 +1,3 @@
-const Book = require('../../backend/src/models/book');
 const booksAPI = require('../utils/bookApi')
 
 

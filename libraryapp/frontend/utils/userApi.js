@@ -4,7 +4,7 @@ const { USERS_API_URL } = require('./constants');
 class UserApi {
     constructor(baseUrl, headers) {
         this._headers = headers;
-        this.baseUrl = baseUrl;
+        this._baseUrl = baseUrl;
     }
 
     _request(url, options) {
@@ -20,7 +20,7 @@ class UserApi {
     }
 
     getUserById(userId) {
-        return this._request(`${this_baseUrl}/api/user/${userId}`, {
+        return this._request(`${this._baseUrl}/api/user/${userId}`, {
             headers: this._headers
         });
     }
@@ -33,4 +33,4 @@ const headers = {
 const baseUrl = USERS_API_URL;
 const userApi = new UserApi(baseUrl, headers);
 
-module.exports = UserApi;
+module.exports = userApi;

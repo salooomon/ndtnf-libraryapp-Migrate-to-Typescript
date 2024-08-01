@@ -1,5 +1,4 @@
-import mongoose, {Document} from "mongoose"
-import { Book } from "../types/book";
+import mongoose from "mongoose"
 
 const bookSchema = new mongoose.Schema({
     title: {
@@ -28,6 +27,6 @@ const bookSchema = new mongoose.Schema({
     }
 })
 
-const Book = mongoose.model<Book & Document>("Book", bookSchema);
+const Book = mongoose.model("Book", bookSchema);
 
 export default Book

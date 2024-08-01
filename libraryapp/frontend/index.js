@@ -14,8 +14,6 @@ const error  = require('./middleware/error');
 
 const userRender = require('./regulator/userRender');
 const logger = require("./middleware/logger");
-const mongoose = require("mongoose");
-const bookRender = require("./regulator/booksRender");
 
 const PORT = process.env.PORT || 3001;
 
@@ -57,10 +55,6 @@ app.use(error);
 
 async function start() {
     try {
-        console.log(DB_URL);
-        await mongoose.connect(DB_URL);
-        bookRender.addBooks();
-
         server.listen(PORT, () => {
             console.log(`Server listening on port ${PORT}`);
         });

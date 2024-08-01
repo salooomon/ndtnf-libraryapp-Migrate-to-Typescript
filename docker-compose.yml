@@ -2,6 +2,7 @@ services:
 
   mongo:
     image: mongo
+    container_name: db
     restart: always
     ports:
       - 8081:8081
@@ -13,51 +14,53 @@ services:
 
   storage:
     image: redis
+    container_name: storage
     volumes:
       - ./data:/data
 
   counter:
 #    image: kirill000/counter:v1.0.0
     build: ./counter
+    container_name: counter
     restart: always
-    volumes:
-      - /app/node_modules
-      - ./counter:/app
     ports:
       - 3000:3000
     environment:
       - PORTS=3000
       - REDIS_URL=redis://storage
+    volumes:
+      - /app/node_modules
+      - ./counter:/app
     depends_on:
       - storage
 
   library-backend:
 #    image: kirill000/library:v4.0.0
     build: ./libraryapp/backend
+    container_name: library-backend
     command: npm run dev
     restart: always
     ports:
       - 3001:3001
     environment:
       - PORTS=3001
-      - CNT_PORT=3000
-      - REDIS_URL=redis://storage
       - DB_URL=mongodb://root:example@mongo:27017
     volumes:
       - /app/node_modules
       - ./libraryapp/backend:/app
     depends_on:
       - mongo
-      - counter
+
   library-frontend:
     build: ./libraryapp/frontend
+    container_name: library-frontend
     command: npm run dev
     restart: always
     ports:
       - 3002:3002
     environment:
       - PORT=3002
-      - BASE_URL=http://bookap:3001
+      - BASE_URL=http://libraryapp:3001
       - REDIS_URL=http://counter:3000
     volumes:
       - /app/node_modules
